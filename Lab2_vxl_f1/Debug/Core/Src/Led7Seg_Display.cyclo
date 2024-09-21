@@ -1,0 +1,3 @@
+../Core/Src/Led7Seg_Display.c:10:6:Led7Seg_int	2
+../Core/Src/Led7Seg_Display.c:21:6:calculator_BCD_to_7SEG	1
+../Core/Src/Led7Seg_Display.c:55:6:display7SEG	1
