@@ -63,14 +63,11 @@ void update7SEG(int index){
 		display7SEG(Buffer);
 		En_led_7_seg();
 		flag_timer[0] = 0;
-
-
-	//DOT BLINK
-
-
-
 }
 
+void DOT_BLINK(){
+	HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+}
 
 void Exercise_3_4(){
 	if(flag_timer[0]){
@@ -80,7 +77,7 @@ void Exercise_3_4(){
 	}
 
 	if(flag_timer[1]){
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		DOT_BLINK();
 		flag_timer[1] = 0;
 	}
 }
