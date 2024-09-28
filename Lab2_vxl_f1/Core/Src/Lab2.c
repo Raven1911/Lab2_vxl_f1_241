@@ -29,17 +29,19 @@ void System_Lab2_init(){
 	timer_init();
 
 	//Data buffer
-	setTimer(0, 1000);
+	setTimer(0, 500);
 	//Scan_led
-	setTimer(1, 250);
+	setTimer(1, 500);
 	//DOT
 	setTimer(2, 1000);
 }
 
 unsigned Led_Pos[4] = {1, 1, 1, 1};
 unsigned En_Led_Pos[4] = {0b1110, 0b1101, 0b1011, 0b0111};
+unsigned Data_Led[4] = {1, 2, 3, 0};
 
 uint8_t Counter_Led_Pos = 0;
+uint8_t Counter_Led_Data = 0;
 uint8_t Max_Led = 4;
 uint8_t Buffer = 0;
 
@@ -53,9 +55,12 @@ void En_led_7_seg(){
 void Exercise_2(){
 	//DATA BUFFER
 	if(flag_timer[0]){
-		Buffer++;
-		if(Buffer > 9){
-			Buffer = 0;
+
+		Buffer = Data_Led[Counter_Led_Data];
+		Counter_Led_Data++;
+
+		if(Counter_Led_Data > Max_Led - 1){
+			Counter_Led_Data = 0;
 		}
 
 		display7SEG(Buffer);
@@ -64,7 +69,6 @@ void Exercise_2(){
 
 	//scan led
 	if(flag_timer[1]){
-
 		for(int i = 0; i < Max_Led; i++){
 			Led_Pos[i] = (En_Led_Pos[Counter_Led_Pos] >> i) & 0b1;
 		}
@@ -83,6 +87,8 @@ void Exercise_2(){
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		flag_timer[2] = 0;
 	}
+
+
 
 }
 
