@@ -55,4 +55,10 @@ void Exercise_1(){
 
 }
 
+void Led_test(){
+	if(flag_timer[0]){
+		HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+		flag_timer[0] = 0;
+	}
+}
 
