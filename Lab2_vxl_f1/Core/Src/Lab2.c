@@ -28,27 +28,30 @@ void System_Lab2_init(){
 	Led7Seg_int(Led_7Seg_Array);
 	timer_init();
 
-	//timer scan led
-	setTimer(0, 250);
+	//Data buffer
+	setTimer(0, 1000);
+	//Scan_led
 	setTimer(1, 250);
 	//DOT
 	setTimer(2, 1000);
 }
 
-unsigned Led_Pos[2] = {1, 1};
-unsigned En_Led_Pos[2] = {0b10, 0b01};
+unsigned Led_Pos[4] = {1, 1, 1, 1};
+unsigned En_Led_Pos[4] = {0b1110, 0b1101, 0b1011, 0b0111};
 
 uint8_t Counter_Led_Pos = 0;
-uint8_t Max_Led = 2;
+uint8_t Max_Led = 4;
 uint8_t Buffer = 0;
 
 void En_led_7_seg(){
 	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, Led_Pos[0]);
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, Led_Pos[1]);
+	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, Led_Pos[2]);
+	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, Led_Pos[3]);
 }
 
 void Exercise_2(){
-	//DATA
+	//DATA BUFFER
 	if(flag_timer[0]){
 		Buffer++;
 		if(Buffer > 9){
