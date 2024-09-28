@@ -29,9 +29,9 @@ void System_Lab2_init(){
 	timer_init();
 
 	//Data buffer
-	setTimer(0, 500);
+	setTimer(0, 250);
 	//Scan_led
-	setTimer(1, 500);
+	setTimer(1, 250);
 	//DOT
 	setTimer(2, 1000);
 }
