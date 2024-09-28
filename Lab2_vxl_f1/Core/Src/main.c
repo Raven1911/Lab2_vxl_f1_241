@@ -100,7 +100,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Exercise_2();
+	  Exercise_3();
   }
   /* USER CODE END 3 */
 }

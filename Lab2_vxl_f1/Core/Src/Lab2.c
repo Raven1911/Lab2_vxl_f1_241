@@ -28,20 +28,18 @@ void System_Lab2_init(){
 	Led7Seg_int(Led_7Seg_Array);
 	timer_init();
 
-	//Data buffer
+	//Data buffer	//Scan_led
 	setTimer(0, 500);
-	//Scan_led
-	setTimer(1, 500);
 	//DOT
-	setTimer(2, 1000);
+	setTimer(1, 1000);
+
 }
 
 unsigned Led_Pos[4] = {1, 1, 1, 1};
 unsigned En_Led_Pos[4] = {0b1110, 0b1101, 0b1011, 0b0111};
-unsigned Data_Led[4] = {1, 2, 3, 0};
+unsigned Led_Buffer[4] = {1, 2, 3, 0};
 
-uint8_t Counter_Led_Pos = 0;
-uint8_t Counter_Led_Data = 0;
+uint8_t index_led = 0;
 uint8_t Max_Led = 4;
 uint8_t Buffer = 0;
 
@@ -52,44 +50,38 @@ void En_led_7_seg(){
 	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, Led_Pos[3]);
 }
 
-void Exercise_2(){
-	//DATA BUFFER
+void update7SEG(int index){
 	if(flag_timer[0]){
-
-		Buffer = Data_Led[Counter_Led_Data];
-		Counter_Led_Data++;
-
-		if(Counter_Led_Data > Max_Led - 1){
-			Counter_Led_Data = 0;
+		//scan led
+		for(int i = 0; i < Max_Led; i++){
+			Led_Pos[i] = (En_Led_Pos[index] >> i) & 0b1;
 		}
 
+		//DATA BUFFER
+		Buffer = Led_Buffer[index];
+
+
+		///////////////////////
+		En_led_7_seg();
 		display7SEG(Buffer);
 		flag_timer[0] = 0;
 	}
 
-	//scan led
+	//DOT BLINK
+
+
+
+}
+
+
+void Exercise_3(){
+	update7SEG(index_led++);
+	if(index_led > Max_Led - 1) index_led = 0;
+
 	if(flag_timer[1]){
-		for(int i = 0; i < Max_Led; i++){
-			Led_Pos[i] = (En_Led_Pos[Counter_Led_Pos] >> i) & 0b1;
-		}
-
-		Counter_Led_Pos++;
-		if(Counter_Led_Pos > Max_Led - 1){
-			Counter_Led_Pos = 0;
-		}
-
-		En_led_7_seg();
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		flag_timer[1] = 0;
 	}
-
-	//DOT BLINK
-	if(flag_timer[2]){
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-		flag_timer[2] = 0;
-	}
-
-
-
 }
 
 
