@@ -1,4 +1,4 @@
 ../Core/Src/Lab2.c:27:6:System_Lab2_init	1
 ../Core/Src/Lab2.c:46:6:En_led_7_seg	1
-../Core/Src/Lab2.c:53:6:update7SEG	3
-../Core/Src/Lab2.c:77:6:Exercise_3	3
+../Core/Src/Lab2.c:53:6:update7SEG	2
+../Core/Src/Lab2.c:75:6:Exercise_3_4	4

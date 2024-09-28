@@ -33,19 +33,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_aranges 000009c8  00000000  00000000  0000e308  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 0000077c  00000000  00000000  0000ecd0  2**0
+ 15 .debug_rnglists 0000077b  00000000  00000000  0000ecd0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00010f0e  00000000  00000000  0000f44c  2**0
+ 16 .debug_macro  00010f0e  00000000  00000000  0000f44b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000bb0f  00000000  00000000  0002035a  2**0
+ 17 .debug_line   0000bb12  00000000  00000000  00020359  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00067228  00000000  00000000  0002be69  2**0
+ 18 .debug_str    0006722a  00000000  00000000  0002be6b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00093091  2**0
+ 19 .comment      00000043  00000000  00000000  00093095  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002758  00000000  00000000  000930d4  2**2
+ 20 .debug_frame  00002758  00000000  00000000  000930d8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000055  00000000  00000000  0009582c  2**0
+ 21 .debug_line_str 00000055  00000000  00000000  00095830  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -88,200 +88,202 @@ void System_Lab2_init(){
  8000210:	b580      	push	{r7, lr}
  8000212:	af00      	add	r7, sp, #0
 	Led7Seg_int(Led_7Seg_Array);
- 8000214:	4808      	ldr	r0, [pc, #32]	@ (8000238 <System_Lab2_init+0x28>)
+ 8000214:	4807      	ldr	r0, [pc, #28]	@ (8000234 <System_Lab2_init+0x24>)
  8000216:	f000 f8a7 	bl	8000368 <Led7Seg_int>
 	timer_init();
  800021a:	f000 fb91 	bl	8000940 <timer_init>
 
 	//Data buffer	//Scan_led
-	setTimer(0, 500);
- 800021e:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
- 8000222:	2000      	movs	r0, #0
- 8000224:	f000 fb96 	bl	8000954 <setTimer>
+	setTimer(0, 250);
+ 800021e:	21fa      	movs	r1, #250	@ 0xfa
+ 8000220:	2000      	movs	r0, #0
+ 8000222:	f000 fb97 	bl	8000954 <setTimer>
 	//DOT
 	setTimer(1, 1000);
- 8000228:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
- 800022c:	2001      	movs	r0, #1
- 800022e:	f000 fb91 	bl	8000954 <setTimer>
+ 8000226:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 800022a:	2001      	movs	r0, #1
+ 800022c:	f000 fb92 	bl	8000954 <setTimer>
 
 }
- 8000232:	bf00      	nop
- 8000234:	bd80      	pop	{r7, pc}
- 8000236:	bf00      	nop
- 8000238:	20000000 	.word	0x20000000
+ 8000230:	bf00      	nop
+ 8000232:	bd80      	pop	{r7, pc}
+ 8000234:	20000000 	.word	0x20000000
 
-0800023c <En_led_7_seg>:
+08000238 <En_led_7_seg>:
 
 uint8_t index_led = 0;
 uint8_t Max_Led = 4;
 uint8_t Buffer = 0;
 
 void En_led_7_seg(){
- 800023c:	b580      	push	{r7, lr}
- 800023e:	af00      	add	r7, sp, #0
+ 8000238:	b580      	push	{r7, lr}
+ 800023a:	af00      	add	r7, sp, #0
 	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, Led_Pos[0]);
- 8000240:	4b11      	ldr	r3, [pc, #68]	@ (8000288 <En_led_7_seg+0x4c>)
- 8000242:	681b      	ldr	r3, [r3, #0]
- 8000244:	b2db      	uxtb	r3, r3
- 8000246:	461a      	mov	r2, r3
- 8000248:	2140      	movs	r1, #64	@ 0x40
- 800024a:	4810      	ldr	r0, [pc, #64]	@ (800028c <En_led_7_seg+0x50>)
- 800024c:	f000 ff9e 	bl	800118c <HAL_GPIO_WritePin>
+ 800023c:	4b11      	ldr	r3, [pc, #68]	@ (8000284 <En_led_7_seg+0x4c>)
+ 800023e:	681b      	ldr	r3, [r3, #0]
+ 8000240:	b2db      	uxtb	r3, r3
+ 8000242:	461a      	mov	r2, r3
+ 8000244:	2140      	movs	r1, #64	@ 0x40
+ 8000246:	4810      	ldr	r0, [pc, #64]	@ (8000288 <En_led_7_seg+0x50>)
+ 8000248:	f000 ffa0 	bl	800118c <HAL_GPIO_WritePin>
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, Led_Pos[1]);
- 8000250:	4b0d      	ldr	r3, [pc, #52]	@ (8000288 <En_led_7_seg+0x4c>)
- 8000252:	685b      	ldr	r3, [r3, #4]
- 8000254:	b2db      	uxtb	r3, r3
- 8000256:	461a      	mov	r2, r3
- 8000258:	2180      	movs	r1, #128	@ 0x80
- 800025a:	480c      	ldr	r0, [pc, #48]	@ (800028c <En_led_7_seg+0x50>)
- 800025c:	f000 ff96 	bl	800118c <HAL_GPIO_WritePin>
+ 800024c:	4b0d      	ldr	r3, [pc, #52]	@ (8000284 <En_led_7_seg+0x4c>)
+ 800024e:	685b      	ldr	r3, [r3, #4]
+ 8000250:	b2db      	uxtb	r3, r3
+ 8000252:	461a      	mov	r2, r3
+ 8000254:	2180      	movs	r1, #128	@ 0x80
+ 8000256:	480c      	ldr	r0, [pc, #48]	@ (8000288 <En_led_7_seg+0x50>)
+ 8000258:	f000 ff98 	bl	800118c <HAL_GPIO_WritePin>
 	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, Led_Pos[2]);
- 8000260:	4b09      	ldr	r3, [pc, #36]	@ (8000288 <En_led_7_seg+0x4c>)
- 8000262:	689b      	ldr	r3, [r3, #8]
- 8000264:	b2db      	uxtb	r3, r3
- 8000266:	461a      	mov	r2, r3
- 8000268:	f44f 7180 	mov.w	r1, #256	@ 0x100
- 800026c:	4807      	ldr	r0, [pc, #28]	@ (800028c <En_led_7_seg+0x50>)
- 800026e:	f000 ff8d 	bl	800118c <HAL_GPIO_WritePin>
+ 800025c:	4b09      	ldr	r3, [pc, #36]	@ (8000284 <En_led_7_seg+0x4c>)
+ 800025e:	689b      	ldr	r3, [r3, #8]
+ 8000260:	b2db      	uxtb	r3, r3
+ 8000262:	461a      	mov	r2, r3
+ 8000264:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 8000268:	4807      	ldr	r0, [pc, #28]	@ (8000288 <En_led_7_seg+0x50>)
+ 800026a:	f000 ff8f 	bl	800118c <HAL_GPIO_WritePin>
 	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, Led_Pos[3]);
- 8000272:	4b05      	ldr	r3, [pc, #20]	@ (8000288 <En_led_7_seg+0x4c>)
- 8000274:	68db      	ldr	r3, [r3, #12]
- 8000276:	b2db      	uxtb	r3, r3
- 8000278:	461a      	mov	r2, r3
- 800027a:	f44f 7100 	mov.w	r1, #512	@ 0x200
- 800027e:	4803      	ldr	r0, [pc, #12]	@ (800028c <En_led_7_seg+0x50>)
- 8000280:	f000 ff84 	bl	800118c <HAL_GPIO_WritePin>
+ 800026e:	4b05      	ldr	r3, [pc, #20]	@ (8000284 <En_led_7_seg+0x4c>)
+ 8000270:	68db      	ldr	r3, [r3, #12]
+ 8000272:	b2db      	uxtb	r3, r3
+ 8000274:	461a      	mov	r2, r3
+ 8000276:	f44f 7100 	mov.w	r1, #512	@ 0x200
+ 800027a:	4803      	ldr	r0, [pc, #12]	@ (8000288 <En_led_7_seg+0x50>)
+ 800027c:	f000 ff86 	bl	800118c <HAL_GPIO_WritePin>
 }
- 8000284:	bf00      	nop
- 8000286:	bd80      	pop	{r7, pc}
- 8000288:	20000038 	.word	0x20000038
- 800028c:	40010800 	.word	0x40010800
+ 8000280:	bf00      	nop
+ 8000282:	bd80      	pop	{r7, pc}
+ 8000284:	20000038 	.word	0x20000038
+ 8000288:	40010800 	.word	0x40010800
 
-08000290 <update7SEG>:
+0800028c <update7SEG>:
 
 void update7SEG(int index){
- 8000290:	b580      	push	{r7, lr}
- 8000292:	b084      	sub	sp, #16
- 8000294:	af00      	add	r7, sp, #0
- 8000296:	6078      	str	r0, [r7, #4]
-	if(flag_timer[0]){
- 8000298:	4b18      	ldr	r3, [pc, #96]	@ (80002fc <update7SEG+0x6c>)
- 800029a:	881b      	ldrh	r3, [r3, #0]
- 800029c:	2b00      	cmp	r3, #0
- 800029e:	d029      	beq.n	80002f4 <update7SEG+0x64>
-		//scan led
-		for(int i = 0; i < Max_Led; i++){
- 80002a0:	2300      	movs	r3, #0
- 80002a2:	60fb      	str	r3, [r7, #12]
- 80002a4:	e00f      	b.n	80002c6 <update7SEG+0x36>
-			Led_Pos[i] = (En_Led_Pos[index] >> i) & 0b1;
- 80002a6:	4a16      	ldr	r2, [pc, #88]	@ (8000300 <update7SEG+0x70>)
- 80002a8:	687b      	ldr	r3, [r7, #4]
- 80002aa:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
- 80002ae:	68fb      	ldr	r3, [r7, #12]
- 80002b0:	fa22 f303 	lsr.w	r3, r2, r3
- 80002b4:	f003 0201 	and.w	r2, r3, #1
- 80002b8:	4912      	ldr	r1, [pc, #72]	@ (8000304 <update7SEG+0x74>)
- 80002ba:	68fb      	ldr	r3, [r7, #12]
- 80002bc:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
-		for(int i = 0; i < Max_Led; i++){
- 80002c0:	68fb      	ldr	r3, [r7, #12]
- 80002c2:	3301      	adds	r3, #1
- 80002c4:	60fb      	str	r3, [r7, #12]
- 80002c6:	4b10      	ldr	r3, [pc, #64]	@ (8000308 <update7SEG+0x78>)
- 80002c8:	781b      	ldrb	r3, [r3, #0]
- 80002ca:	461a      	mov	r2, r3
- 80002cc:	68fb      	ldr	r3, [r7, #12]
- 80002ce:	4293      	cmp	r3, r2
- 80002d0:	dbe9      	blt.n	80002a6 <update7SEG+0x16>
-		}
-
+ 800028c:	b580      	push	{r7, lr}
+ 800028e:	b084      	sub	sp, #16
+ 8000290:	af00      	add	r7, sp, #0
+ 8000292:	6078      	str	r0, [r7, #4]
 		//DATA BUFFER
 		Buffer = Led_Buffer[index];
- 80002d2:	4a0e      	ldr	r2, [pc, #56]	@ (800030c <update7SEG+0x7c>)
- 80002d4:	687b      	ldr	r3, [r7, #4]
- 80002d6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80002da:	b2da      	uxtb	r2, r3
- 80002dc:	4b0c      	ldr	r3, [pc, #48]	@ (8000310 <update7SEG+0x80>)
- 80002de:	701a      	strb	r2, [r3, #0]
+ 8000294:	4a16      	ldr	r2, [pc, #88]	@ (80002f0 <update7SEG+0x64>)
+ 8000296:	687b      	ldr	r3, [r7, #4]
+ 8000298:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 800029c:	b2da      	uxtb	r2, r3
+ 800029e:	4b15      	ldr	r3, [pc, #84]	@ (80002f4 <update7SEG+0x68>)
+ 80002a0:	701a      	strb	r2, [r3, #0]
 
+		//scan led
+		for(int i = 0; i < Max_Led; i++){
+ 80002a2:	2300      	movs	r3, #0
+ 80002a4:	60fb      	str	r3, [r7, #12]
+ 80002a6:	e00f      	b.n	80002c8 <update7SEG+0x3c>
+			Led_Pos[i] = (En_Led_Pos[index] >> i) & 0b1;
+ 80002a8:	4a13      	ldr	r2, [pc, #76]	@ (80002f8 <update7SEG+0x6c>)
+ 80002aa:	687b      	ldr	r3, [r7, #4]
+ 80002ac:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
+ 80002b0:	68fb      	ldr	r3, [r7, #12]
+ 80002b2:	fa22 f303 	lsr.w	r3, r2, r3
+ 80002b6:	f003 0201 	and.w	r2, r3, #1
+ 80002ba:	4910      	ldr	r1, [pc, #64]	@ (80002fc <update7SEG+0x70>)
+ 80002bc:	68fb      	ldr	r3, [r7, #12]
+ 80002be:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
+		for(int i = 0; i < Max_Led; i++){
+ 80002c2:	68fb      	ldr	r3, [r7, #12]
+ 80002c4:	3301      	adds	r3, #1
+ 80002c6:	60fb      	str	r3, [r7, #12]
+ 80002c8:	4b0d      	ldr	r3, [pc, #52]	@ (8000300 <update7SEG+0x74>)
+ 80002ca:	781b      	ldrb	r3, [r3, #0]
+ 80002cc:	461a      	mov	r2, r3
+ 80002ce:	68fb      	ldr	r3, [r7, #12]
+ 80002d0:	4293      	cmp	r3, r2
+ 80002d2:	dbe9      	blt.n	80002a8 <update7SEG+0x1c>
+		}
 
 		///////////////////////
-		En_led_7_seg();
- 80002e0:	f7ff ffac 	bl	800023c <En_led_7_seg>
 		display7SEG(Buffer);
- 80002e4:	4b0a      	ldr	r3, [pc, #40]	@ (8000310 <update7SEG+0x80>)
- 80002e6:	781b      	ldrb	r3, [r3, #0]
- 80002e8:	4618      	mov	r0, r3
- 80002ea:	f000 f9c9 	bl	8000680 <display7SEG>
+ 80002d4:	4b07      	ldr	r3, [pc, #28]	@ (80002f4 <update7SEG+0x68>)
+ 80002d6:	781b      	ldrb	r3, [r3, #0]
+ 80002d8:	4618      	mov	r0, r3
+ 80002da:	f000 f9d1 	bl	8000680 <display7SEG>
+		En_led_7_seg();
+ 80002de:	f7ff ffab 	bl	8000238 <En_led_7_seg>
 		flag_timer[0] = 0;
- 80002ee:	4b03      	ldr	r3, [pc, #12]	@ (80002fc <update7SEG+0x6c>)
- 80002f0:	2200      	movs	r2, #0
- 80002f2:	801a      	strh	r2, [r3, #0]
+ 80002e2:	4b08      	ldr	r3, [pc, #32]	@ (8000304 <update7SEG+0x78>)
+ 80002e4:	2200      	movs	r2, #0
+ 80002e6:	801a      	strh	r2, [r3, #0]
 
 	//DOT BLINK
 
 
 
 }
- 80002f4:	bf00      	nop
- 80002f6:	3710      	adds	r7, #16
- 80002f8:	46bd      	mov	sp, r7
- 80002fa:	bd80      	pop	{r7, pc}
- 80002fc:	200000ec 	.word	0x200000ec
- 8000300:	20000048 	.word	0x20000048
- 8000304:	20000038 	.word	0x20000038
- 8000308:	20000068 	.word	0x20000068
- 800030c:	20000058 	.word	0x20000058
- 8000310:	20000095 	.word	0x20000095
+ 80002e8:	bf00      	nop
+ 80002ea:	3710      	adds	r7, #16
+ 80002ec:	46bd      	mov	sp, r7
+ 80002ee:	bd80      	pop	{r7, pc}
+ 80002f0:	20000058 	.word	0x20000058
+ 80002f4:	20000095 	.word	0x20000095
+ 80002f8:	20000048 	.word	0x20000048
+ 80002fc:	20000038 	.word	0x20000038
+ 8000300:	20000068 	.word	0x20000068
+ 8000304:	200000ec 	.word	0x200000ec
 
-08000314 <Exercise_3>:
+08000308 <Exercise_3_4>:
 
 
-void Exercise_3(){
- 8000314:	b580      	push	{r7, lr}
- 8000316:	af00      	add	r7, sp, #0
-	update7SEG(index_led++);
- 8000318:	4b0f      	ldr	r3, [pc, #60]	@ (8000358 <Exercise_3+0x44>)
- 800031a:	781b      	ldrb	r3, [r3, #0]
- 800031c:	1c5a      	adds	r2, r3, #1
- 800031e:	b2d1      	uxtb	r1, r2
- 8000320:	4a0d      	ldr	r2, [pc, #52]	@ (8000358 <Exercise_3+0x44>)
- 8000322:	7011      	strb	r1, [r2, #0]
- 8000324:	4618      	mov	r0, r3
- 8000326:	f7ff ffb3 	bl	8000290 <update7SEG>
-	if(index_led > Max_Led - 1) index_led = 0;
- 800032a:	4b0c      	ldr	r3, [pc, #48]	@ (800035c <Exercise_3+0x48>)
- 800032c:	781a      	ldrb	r2, [r3, #0]
- 800032e:	4b0a      	ldr	r3, [pc, #40]	@ (8000358 <Exercise_3+0x44>)
- 8000330:	781b      	ldrb	r3, [r3, #0]
- 8000332:	429a      	cmp	r2, r3
- 8000334:	d802      	bhi.n	800033c <Exercise_3+0x28>
- 8000336:	4b08      	ldr	r3, [pc, #32]	@ (8000358 <Exercise_3+0x44>)
- 8000338:	2200      	movs	r2, #0
- 800033a:	701a      	strb	r2, [r3, #0]
+void Exercise_3_4(){
+ 8000308:	b580      	push	{r7, lr}
+ 800030a:	af00      	add	r7, sp, #0
+	if(flag_timer[0]){
+ 800030c:	4b12      	ldr	r3, [pc, #72]	@ (8000358 <Exercise_3_4+0x50>)
+ 800030e:	881b      	ldrh	r3, [r3, #0]
+ 8000310:	2b00      	cmp	r3, #0
+ 8000312:	d014      	beq.n	800033e <Exercise_3_4+0x36>
+		update7SEG(index_led++);
+ 8000314:	4b11      	ldr	r3, [pc, #68]	@ (800035c <Exercise_3_4+0x54>)
+ 8000316:	781b      	ldrb	r3, [r3, #0]
+ 8000318:	1c5a      	adds	r2, r3, #1
+ 800031a:	b2d1      	uxtb	r1, r2
+ 800031c:	4a0f      	ldr	r2, [pc, #60]	@ (800035c <Exercise_3_4+0x54>)
+ 800031e:	7011      	strb	r1, [r2, #0]
+ 8000320:	4618      	mov	r0, r3
+ 8000322:	f7ff ffb3 	bl	800028c <update7SEG>
+		if(index_led > Max_Led - 1) index_led = 0;
+ 8000326:	4b0e      	ldr	r3, [pc, #56]	@ (8000360 <Exercise_3_4+0x58>)
+ 8000328:	781a      	ldrb	r2, [r3, #0]
+ 800032a:	4b0c      	ldr	r3, [pc, #48]	@ (800035c <Exercise_3_4+0x54>)
+ 800032c:	781b      	ldrb	r3, [r3, #0]
+ 800032e:	429a      	cmp	r2, r3
+ 8000330:	d802      	bhi.n	8000338 <Exercise_3_4+0x30>
+ 8000332:	4b0a      	ldr	r3, [pc, #40]	@ (800035c <Exercise_3_4+0x54>)
+ 8000334:	2200      	movs	r2, #0
+ 8000336:	701a      	strb	r2, [r3, #0]
+		flag_timer[0] = 0;
+ 8000338:	4b07      	ldr	r3, [pc, #28]	@ (8000358 <Exercise_3_4+0x50>)
+ 800033a:	2200      	movs	r2, #0
+ 800033c:	801a      	strh	r2, [r3, #0]
+	}
 
 	if(flag_timer[1]){
- 800033c:	4b08      	ldr	r3, [pc, #32]	@ (8000360 <Exercise_3+0x4c>)
- 800033e:	885b      	ldrh	r3, [r3, #2]
- 8000340:	2b00      	cmp	r3, #0
- 8000342:	d006      	beq.n	8000352 <Exercise_3+0x3e>
+ 800033e:	4b06      	ldr	r3, [pc, #24]	@ (8000358 <Exercise_3_4+0x50>)
+ 8000340:	885b      	ldrh	r3, [r3, #2]
+ 8000342:	2b00      	cmp	r3, #0
+ 8000344:	d006      	beq.n	8000354 <Exercise_3_4+0x4c>
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
- 8000344:	2110      	movs	r1, #16
- 8000346:	4807      	ldr	r0, [pc, #28]	@ (8000364 <Exercise_3+0x50>)
- 8000348:	f000 ff38 	bl	80011bc <HAL_GPIO_TogglePin>
+ 8000346:	2110      	movs	r1, #16
+ 8000348:	4806      	ldr	r0, [pc, #24]	@ (8000364 <Exercise_3_4+0x5c>)
+ 800034a:	f000 ff37 	bl	80011bc <HAL_GPIO_TogglePin>
 		flag_timer[1] = 0;
- 800034c:	4b04      	ldr	r3, [pc, #16]	@ (8000360 <Exercise_3+0x4c>)
- 800034e:	2200      	movs	r2, #0
- 8000350:	805a      	strh	r2, [r3, #2]
+ 800034e:	4b02      	ldr	r3, [pc, #8]	@ (8000358 <Exercise_3_4+0x50>)
+ 8000350:	2200      	movs	r2, #0
+ 8000352:	805a      	strh	r2, [r3, #2]
 	}
 }
- 8000352:	bf00      	nop
- 8000354:	bd80      	pop	{r7, pc}
- 8000356:	bf00      	nop
- 8000358:	20000094 	.word	0x20000094
- 800035c:	20000068 	.word	0x20000068
- 8000360:	200000ec 	.word	0x200000ec
+ 8000354:	bf00      	nop
+ 8000356:	bd80      	pop	{r7, pc}
+ 8000358:	200000ec 	.word	0x200000ec
+ 800035c:	20000094 	.word	0x20000094
+ 8000360:	20000068 	.word	0x20000068
  8000364:	40010800 	.word	0x40010800
 
 08000368 <Led7Seg_int>:
@@ -840,8 +842,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Exercise_3();
- 8000778:	f7ff fdcc 	bl	8000314 <Exercise_3>
+	  Exercise_3_4();
+ 8000778:	f7ff fdc6 	bl	8000308 <Exercise_3_4>
  800077c:	e7fc      	b.n	8000778 <main+0x18>
 
 0800077e <SystemClock_Config>:

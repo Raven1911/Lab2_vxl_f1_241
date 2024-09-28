@@ -29,7 +29,7 @@ void System_Lab2_init(){
 	timer_init();
 
 	//Data buffer	//Scan_led
-	setTimer(0, 500);
+	setTimer(0, 250);
 	//DOT
 	setTimer(1, 1000);
 
@@ -51,21 +51,19 @@ void En_led_7_seg(){
 }
 
 void update7SEG(int index){
-	if(flag_timer[0]){
+		//DATA BUFFER
+		Buffer = Led_Buffer[index];
+
 		//scan led
 		for(int i = 0; i < Max_Led; i++){
 			Led_Pos[i] = (En_Led_Pos[index] >> i) & 0b1;
 		}
 
-		//DATA BUFFER
-		Buffer = Led_Buffer[index];
-
-
 		///////////////////////
-		En_led_7_seg();
 		display7SEG(Buffer);
+		En_led_7_seg();
 		flag_timer[0] = 0;
-	}
+
 
 	//DOT BLINK
 
@@ -74,9 +72,12 @@ void update7SEG(int index){
 }
 
 
-void Exercise_3(){
-	update7SEG(index_led++);
-	if(index_led > Max_Led - 1) index_led = 0;
+void Exercise_3_4(){
+	if(flag_timer[0]){
+		update7SEG(index_led++);
+		if(index_led > Max_Led - 1) index_led = 0;
+		flag_timer[0] = 0;
+	}
 
 	if(flag_timer[1]){
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
