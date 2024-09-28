@@ -88,7 +88,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  System_Lab2_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
