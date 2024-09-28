@@ -22,27 +22,37 @@ GPIO_7SEG_Config Led_7Seg_Array[7] = {
 	{SEG0_5_GPIO_Port, SEG0_5_Pin},  //  f
 	{SEG0_6_GPIO_Port, SEG0_6_Pin}   //  g
 };
+
+
 void System_Lab2_init(){
 	Led7Seg_int(Led_7Seg_Array);
 	timer_init();
 
 	//timer scan led
-	setTimer(0, 1000);
-	setTimer(1, 1000);
+	setTimer(0, 250);
+	setTimer(1, 250);
 }
 
 unsigned Led_Pos[2] = {1, 1};
+unsigned En_Led_Pos[2] = {0b10, 0b01};
+
+uint8_t Counter_Led_Pos = 0;
+uint8_t Max_Led = 2;
 uint8_t Buffer = 0;
-uint8_t Count_Led_Pos = 0;
+
+void En_led_7_seg(){
+	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, Led_Pos[0]);
+	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, Led_Pos[1]);
+}
 
 void Exercise_1(){
-	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 0);
-	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 0);
+	//DATA
 	if(flag_timer[0]){
 		Buffer++;
 		if(Buffer > 9){
 			Buffer = 0;
 		}
+
 		display7SEG(Buffer);
 		flag_timer[0] = 0;
 	}
@@ -50,17 +60,19 @@ void Exercise_1(){
 	//scan led
 	if(flag_timer[1]){
 
-		//HAL_GPIO_WritePin(GPIOx, GPIO_Pin, Led_Pos[0]);
-		//HAL_GPIO_WritePin(GPIOx, GPIO_Pin, Led_Pos[1]);
+		for(int i = 0; i < Max_Led; i++){
+			Led_Pos[i] = (En_Led_Pos[Counter_Led_Pos] >> i) & 0b1;
+		}
+
+		Counter_Led_Pos++;
+		if(Counter_Led_Pos > Max_Led - 1){
+			Counter_Led_Pos = 0;
+		}
+
+		En_led_7_seg();
 		flag_timer[1] = 0;
 	}
 
 }
 
-//void Led_test(){
-//	if(flag_timer[0]){
-//		HAL_GPIO_TogglePin(LED_T_GPIO_Port, LED_T_Pin);
-//		flag_timer[0] = 0;
-//	}
-//}
 
