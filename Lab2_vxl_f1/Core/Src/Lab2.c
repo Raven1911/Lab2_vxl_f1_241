@@ -31,6 +31,8 @@ void System_Lab2_init(){
 	//timer scan led
 	setTimer(0, 250);
 	setTimer(1, 250);
+	//DOT
+	setTimer(2, 1000);
 }
 
 unsigned Led_Pos[2] = {1, 1};
@@ -45,7 +47,7 @@ void En_led_7_seg(){
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, Led_Pos[1]);
 }
 
-void Exercise_1(){
+void Exercise_2(){
 	//DATA
 	if(flag_timer[0]){
 		Buffer++;
@@ -71,6 +73,12 @@ void Exercise_1(){
 
 		En_led_7_seg();
 		flag_timer[1] = 0;
+	}
+
+	//DOT BLINK
+	if(flag_timer[2]){
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		flag_timer[2] = 0;
 	}
 
 }

@@ -22,5 +22,6 @@
 void System_Lab2_init();
 
 void Exercise_1();
+void Exercise_2();
 void Led_test();
 #endif /* INC_LAB2_H_ */
