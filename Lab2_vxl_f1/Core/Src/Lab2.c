@@ -30,14 +30,15 @@ void System_Lab2_init(){
 
 	//Data buffer	//Scan_led
 	setTimer(0, 250);
-	//DOT
-	setTimer(1, 1000);
+	//DOT 	//DIGITAL CLOCK
+	setTimer(1, 500);
+
 
 }
 
 unsigned Led_Pos[4] = {1, 1, 1, 1};
 unsigned En_Led_Pos[4] = {0b1110, 0b1101, 0b1011, 0b0111};
-unsigned Led_Buffer[4] = {1, 2, 3, 0};
+unsigned Led_Buffer[4] = {0, 0, 0, 0};
 
 uint8_t index_led = 0;
 uint8_t Max_Led = 4;
@@ -50,6 +51,33 @@ void En_led_7_seg(){
 	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, Led_Pos[3]);
 }
 
+/////////////////// CLOCK ///////////////////
+uint8_t hour = 23 , minute = 59 , second = 50;
+void updateClockBuffer(){
+	Led_Buffer[0] = hour / 10;
+	Led_Buffer[1] = hour % 10;
+	Led_Buffer[2] = minute / 10;
+	Led_Buffer[3] = minute % 10;
+
+}
+void DIGITAL_CLOCK(){
+	second ++;
+	if ( second >= 60) {
+		second = 0;
+		minute ++;
+	}
+	if( minute >= 60) {
+		minute = 0;
+		hour ++;
+	}
+	if( hour >= 24) {
+		hour = 0;
+	}
+	updateClockBuffer();
+
+
+}
+/////////////////////
 void update7SEG(int index){
 		//DATA BUFFER
 		Buffer = Led_Buffer[index];
@@ -69,7 +97,12 @@ void DOT_BLINK(){
 	HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 }
 
-void Exercise_3_4(){
+
+
+
+
+
+void Exercise5(){
 	if(flag_timer[0]){
 		update7SEG(index_led++);
 		if(index_led > Max_Led - 1) index_led = 0;
@@ -78,8 +111,13 @@ void Exercise_3_4(){
 
 	if(flag_timer[1]){
 		DOT_BLINK();
+		DIGITAL_CLOCK();
 		flag_timer[1] = 0;
 	}
+
+
+
+
 }
 
 

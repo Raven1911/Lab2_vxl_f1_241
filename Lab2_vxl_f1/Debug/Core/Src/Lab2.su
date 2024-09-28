@@ -1,5 +1,7 @@
 ../Core/Src/Lab2.c:27:6:System_Lab2_init	8	static
-../Core/Src/Lab2.c:46:6:En_led_7_seg	8	static
-../Core/Src/Lab2.c:53:6:update7SEG	24	static
-../Core/Src/Lab2.c:68:6:DOT_BLINK	8	static
-../Core/Src/Lab2.c:72:6:Exercise_3_4	8	static
+../Core/Src/Lab2.c:47:6:En_led_7_seg	8	static
+../Core/Src/Lab2.c:56:6:updateClockBuffer	4	static
+../Core/Src/Lab2.c:63:6:DIGITAL_CLOCK	8	static
+../Core/Src/Lab2.c:81:6:update7SEG	24	static
+../Core/Src/Lab2.c:96:6:DOT_BLINK	8	static
+../Core/Src/Lab2.c:105:6:Exercise5	8	static
