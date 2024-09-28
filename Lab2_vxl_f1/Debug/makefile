@@ -52,6 +52,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 Lab2_f1.list \
 
+OBJCOPY_HEX += \
+Lab2_f1.hex \
+
 
 # All Target
 all: main-build
@@ -75,12 +78,17 @@ Lab2_f1.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+Lab2_f1.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "Lab2_f1.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) Lab2_f1.elf Lab2_f1.list Lab2_f1.map default.size.stdout
+	-$(RM) Lab2_f1.elf Lab2_f1.hex Lab2_f1.list Lab2_f1.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
