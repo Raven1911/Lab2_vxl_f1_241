@@ -102,7 +102,7 @@ void DOT_BLINK(){
 
 
 
-void Exercise_5(){
+void Exercise_5_6_7_8(){
 	if(flag_timer[0]){
 		update7SEG(index_led++);
 		if(index_led > Max_Led - 1) index_led = 0;
