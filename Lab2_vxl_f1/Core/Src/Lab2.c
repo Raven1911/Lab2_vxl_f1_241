@@ -90,7 +90,6 @@ void update7SEG(int index){
 		///////////////////////
 		display7SEG(Buffer);
 		En_led_7_seg();
-		flag_timer[0] = 0;
 }
 
 void DOT_BLINK(){
