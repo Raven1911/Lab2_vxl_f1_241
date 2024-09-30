@@ -5,8 +5,8 @@
 ../Core/Src/Lab2.c:84:6:update7SEG	24	static
 ../Core/Src/Lab2.c:98:6:DOT_BLINK	8	static
 ../Core/Src/Lab2.c:107:6:Exercise_5_6_7_8	8	static
-../Core/Src/Lab2.c:178:6:En_Col_Led_Matrix	8	static
-../Core/Src/Lab2.c:189:6:Write_data_Row	8	static
-../Core/Src/Lab2.c:200:6:coppy_data_characterHEX_to_buffer	24	static
-../Core/Src/Lab2.c:206:6:updateLEDMatrix	24	static
-../Core/Src/Lab2.c:223:6:Exercise_9	8	static
+../Core/Src/Lab2.c:145:6:En_Col_Led_Matrix	8	static
+../Core/Src/Lab2.c:156:6:Write_data_Row	8	static
+../Core/Src/Lab2.c:167:6:coppy_data_characterHEX_to_buffer	24	static
+../Core/Src/Lab2.c:173:6:updateLEDMatrix	24	static
+../Core/Src/Lab2.c:190:6:Exercise_9	8	static
