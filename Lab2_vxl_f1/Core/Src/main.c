@@ -101,7 +101,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  //Exercise_5_6_7_8();
-	  Exercise_9();
+	  Exercise_10();
   }
   /* USER CODE END 3 */
 }

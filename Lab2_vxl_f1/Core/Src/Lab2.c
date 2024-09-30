@@ -8,13 +8,8 @@
 
 #include <Lab2.h>
 #include "software_timer.h"
-
 void System_Lab2_init(){
 	timer_init();
-	//Data buffer	//Scan_led
-	setTimer(0, 250);
-	//DOT 	//DIGITAL CLOCK
-	setTimer(1, 500);
 	//Led_Matrix_Timer_Scan
 	setTimer(2, 150);
 
@@ -85,7 +80,7 @@ void updateLEDMatrix (int index) {
 	Write_data_Row();
 }
 
-void Exercise_9(){
+void Exercise_10(){
 	coppy_data_characterHEX_to_buffer(0);
 	if(flag_timer[2]){
 		updateLEDMatrix(index_led_matrix++);
