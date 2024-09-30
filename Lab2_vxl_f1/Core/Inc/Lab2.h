@@ -26,4 +26,6 @@ void Exercise_2();
 void Exercise_3_4();
 void update7SEG();
 void Exercise_5_6_7_8();
+void Exercise_9();
+
 #endif /* INC_LAB2_H_ */

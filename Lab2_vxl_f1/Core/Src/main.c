@@ -100,7 +100,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Exercise_5_6_7_8();
+	  //Exercise_5_6_7_8();
+	  Exercise_9();
   }
   /* USER CODE END 3 */
 }
@@ -202,26 +203,38 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, DOT_Pin|LED_T_Pin|EN0_Pin|EN1_Pin
-                          |EN2_Pin|EN3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, ENM_0_Pin|ENM_1_Pin|DOT_Pin|LED_T_Pin
+                          |EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
+                          |ENM_2_Pin|ENM_3_Pin|ENM_4_Pin|ENM_5_Pin
+                          |ENM_6_Pin|ENM_7_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SEG0_0_Pin|SEG0_1_Pin|SEG0_2_Pin|SEG0_3_Pin
-                          |SEG0_4_Pin|SEG0_5_Pin|SEG0_6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, SEG0_0_Pin|SEG0_1_Pin|SEG0_2_Pin|ROW_2_Pin
+                          |ROW_3_Pin|ROW_4_Pin|ROW_5_Pin|ROW_6_Pin
+                          |ROW_7_Pin|SEG0_3_Pin|SEG0_4_Pin|SEG0_5_Pin
+                          |SEG0_6_Pin|ROW_0_Pin|ROW_1_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : DOT_Pin LED_T_Pin EN0_Pin EN1_Pin
-                           EN2_Pin EN3_Pin */
-  GPIO_InitStruct.Pin = DOT_Pin|LED_T_Pin|EN0_Pin|EN1_Pin
-                          |EN2_Pin|EN3_Pin;
+  /*Configure GPIO pins : ENM_0_Pin ENM_1_Pin DOT_Pin LED_T_Pin
+                           EN0_Pin EN1_Pin EN2_Pin EN3_Pin
+                           ENM_2_Pin ENM_3_Pin ENM_4_Pin ENM_5_Pin
+                           ENM_6_Pin ENM_7_Pin */
+  GPIO_InitStruct.Pin = ENM_0_Pin|ENM_1_Pin|DOT_Pin|LED_T_Pin
+                          |EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
+                          |ENM_2_Pin|ENM_3_Pin|ENM_4_Pin|ENM_5_Pin
+                          |ENM_6_Pin|ENM_7_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SEG0_0_Pin SEG0_1_Pin SEG0_2_Pin SEG0_3_Pin
-                           SEG0_4_Pin SEG0_5_Pin SEG0_6_Pin */
-  GPIO_InitStruct.Pin = SEG0_0_Pin|SEG0_1_Pin|SEG0_2_Pin|SEG0_3_Pin
-                          |SEG0_4_Pin|SEG0_5_Pin|SEG0_6_Pin;
+  /*Configure GPIO pins : SEG0_0_Pin SEG0_1_Pin SEG0_2_Pin ROW_2_Pin
+                           ROW_3_Pin ROW_4_Pin ROW_5_Pin ROW_6_Pin
+                           ROW_7_Pin SEG0_3_Pin SEG0_4_Pin SEG0_5_Pin
+                           SEG0_6_Pin ROW_0_Pin ROW_1_Pin */
+  GPIO_InitStruct.Pin = SEG0_0_Pin|SEG0_1_Pin|SEG0_2_Pin|ROW_2_Pin
+                          |ROW_3_Pin|ROW_4_Pin|ROW_5_Pin|ROW_6_Pin
+                          |ROW_7_Pin|SEG0_3_Pin|SEG0_4_Pin|SEG0_5_Pin
+                          |SEG0_6_Pin|ROW_0_Pin|ROW_1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
