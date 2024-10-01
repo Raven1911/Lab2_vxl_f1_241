@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0000310c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00008436  00000000  00000000  00003135  2**0
+ 12 .debug_info   00008448  00000000  00000000  00003135  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000192f  00000000  00000000  0000b56b  2**0
+ 13 .debug_abbrev 00001946  00000000  00000000  0000b57d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000009a8  00000000  00000000  0000cea0  2**3
+ 14 .debug_aranges 000009b0  00000000  00000000  0000cec8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000769  00000000  00000000  0000d848  2**0
+ 15 .debug_rnglists 0000076f  00000000  00000000  0000d878  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00010d08  00000000  00000000  0000dfb1  2**0
+ 16 .debug_macro  00010d08  00000000  00000000  0000dfe7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000b0fa  00000000  00000000  0001ecb9  2**0
+ 17 .debug_line   0000b10f  00000000  00000000  0001ecef  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000674d8  00000000  00000000  00029db3  2**0
+ 18 .debug_str    000674ed  00000000  00000000  00029dfe  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  0009128b  2**0
+ 19 .comment      00000043  00000000  00000000  000912eb  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002710  00000000  00000000  000912d0  2**2
+ 20 .debug_frame  00002730  00000000  00000000  00091330  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000055  00000000  00000000  000939e0  2**0
+ 21 .debug_line_str 00000055  00000000  00000000  00093a60  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -264,7 +264,7 @@ void coppy_data_characterHEX_to_buffer(int character){
  8000368:	2300      	movs	r3, #0
  800036a:	60fb      	str	r3, [r7, #12]
  800036c:	e00d      	b.n	800038a <coppy_data_characterHEX_to_buffer+0x2a>
-		matrix_buffer_row[i] = characterHEX[character][i];
+		matrix_buffer_col[i] = characterHEX[character][i];
  800036e:	490c      	ldr	r1, [pc, #48]	@ (80003a0 <coppy_data_characterHEX_to_buffer+0x40>)
  8000370:	687b      	ldr	r3, [r7, #4]
  8000372:	00da      	lsls	r2, r3, #3
@@ -307,7 +307,7 @@ void updateLEDMatrix (int index) {
  80003b0:	2300      	movs	r3, #0
  80003b2:	60fb      	str	r3, [r7, #12]
  80003b4:	e012      	b.n	80003dc <updateLEDMatrix+0x34>
-		data_pin_row[i] = (matrix_buffer_row[index] >> (MAX_LED_MATRIX - 1 - i)) & 0b1;
+		data_pin_row[i] = (matrix_buffer_col[index] >> (MAX_LED_MATRIX - 1 - i)) & 0b1;
  80003b6:	4a1b      	ldr	r2, [pc, #108]	@ (8000424 <updateLEDMatrix+0x7c>)
  80003b8:	687b      	ldr	r3, [r7, #4]
  80003ba:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
@@ -372,6 +372,10 @@ void updateLEDMatrix (int index) {
  8000430:	20000040 	.word	0x20000040
 
 08000434 <Exercise_10>:
+
+void animation_shift_down(){
+
+}
 
 void Exercise_10(){
  8000434:	b580      	push	{r7, lr}

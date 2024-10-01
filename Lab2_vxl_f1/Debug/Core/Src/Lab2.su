@@ -3,4 +3,5 @@
 ../Core/Src/Lab2.c:49:6:Write_data_Row	8	static
 ../Core/Src/Lab2.c:60:6:coppy_data_characterHEX_to_buffer	24	static
 ../Core/Src/Lab2.c:66:6:updateLEDMatrix	24	static
-../Core/Src/Lab2.c:83:6:Exercise_10	8	static
+../Core/Src/Lab2.c:83:6:animation_shift_down	4	static
+../Core/Src/Lab2.c:87:6:Exercise_10	8	static
