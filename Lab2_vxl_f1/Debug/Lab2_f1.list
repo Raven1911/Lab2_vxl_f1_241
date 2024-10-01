@@ -275,7 +275,7 @@ void coppy_data_characterHEX_to_buffer(int character){
  800037c:	2300      	movs	r3, #0
  800037e:	60fb      	str	r3, [r7, #12]
  8000380:	e00d      	b.n	800039e <coppy_data_characterHEX_to_buffer+0x2a>
-		matrix_buffer_row[i] = characterHEX[character][i];
+		matrix_buffer_col[i] = characterHEX[character][i];
  8000382:	490c      	ldr	r1, [pc, #48]	@ (80003b4 <coppy_data_characterHEX_to_buffer+0x40>)
  8000384:	687b      	ldr	r3, [r7, #4]
  8000386:	00da      	lsls	r2, r3, #3
@@ -318,7 +318,7 @@ void updateLEDMatrix (int index) {
  80003c4:	2300      	movs	r3, #0
  80003c6:	60fb      	str	r3, [r7, #12]
  80003c8:	e012      	b.n	80003f0 <updateLEDMatrix+0x34>
-		data_pin_row[i] = (matrix_buffer_row[index] >> (MAX_LED_MATRIX - 1 - i)) & 0b1;
+		data_pin_row[i] = (matrix_buffer_col[index] >> (MAX_LED_MATRIX - 1 - i)) & 0b1;
  80003ca:	4a1b      	ldr	r2, [pc, #108]	@ (8000438 <updateLEDMatrix+0x7c>)
  80003cc:	687b      	ldr	r3, [r7, #4]
  80003ce:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]

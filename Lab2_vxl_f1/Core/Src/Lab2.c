@@ -25,7 +25,7 @@ const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 
 //data
-unsigned matrix_buffer_row[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+unsigned matrix_buffer_col[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
 unsigned data_pin_row[8] = {0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0};
 //scan led
 unsigned Col_Code_One_Hot[8] = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
@@ -64,7 +64,7 @@ void Write_data_Row(){
 
 void coppy_data_characterHEX_to_buffer(int character){
 	for(int i = 0; i < MAX_LED_MATRIX; i++){
-		matrix_buffer_row[i] = characterHEX[character][i];
+		matrix_buffer_col[i] = characterHEX[character][i];
 	}
 }
 
@@ -72,7 +72,7 @@ void updateLEDMatrix (int index) {
 
 	//buffer
 	for(int i = 0; i < MAX_LED_MATRIX; i++){
-		data_pin_row[i] = (matrix_buffer_row[index] >> (MAX_LED_MATRIX - 1 - i)) & 0b1;
+		data_pin_row[i] = (matrix_buffer_col[index] >> (MAX_LED_MATRIX - 1 - i)) & 0b1;
 	}
 
 	//scan led_Matrix
