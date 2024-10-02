@@ -86,7 +86,7 @@ void updateLEDMatrix (int index) {
 }
 
 void Exercise_9(){
-	coppy_data_characterHEX_to_buffer(0);
+	coppy_data_characterHEX_to_buffer(2);
 	if(flag_timer[2]){
 		updateLEDMatrix(index_led_matrix++);
 		if(index_led_matrix > MAX_LED_MATRIX - 1) index_led_matrix = 0;

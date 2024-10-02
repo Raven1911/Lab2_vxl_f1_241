@@ -387,8 +387,8 @@ void updateLEDMatrix (int index) {
 void Exercise_9(){
  8000448:	b580      	push	{r7, lr}
  800044a:	af00      	add	r7, sp, #0
-	coppy_data_characterHEX_to_buffer(0);
- 800044c:	2000      	movs	r0, #0
+	coppy_data_characterHEX_to_buffer(2);
+ 800044c:	2002      	movs	r0, #2
  800044e:	f7ff ff91 	bl	8000374 <coppy_data_characterHEX_to_buffer>
 	if(flag_timer[2]){
  8000452:	4b0c      	ldr	r3, [pc, #48]	@ (8000484 <Exercise_9+0x3c>)
