@@ -1,7 +1,5 @@
-../Core/Src/Lab2.c:11:6:System_Lab2_init	8	static
-../Core/Src/Lab2.c:38:6:En_Col_Led_Matrix	8	static
-../Core/Src/Lab2.c:49:6:Write_data_Row	8	static
-../Core/Src/Lab2.c:60:6:coppy_data_characterHEX_to_buffer	24	static
-../Core/Src/Lab2.c:66:6:updateLEDMatrix	24	static
-../Core/Src/Lab2.c:86:6:animation_shift_left	16	static
-../Core/Src/Lab2.c:109:6:Exercise_10	8	static
+../Core/Src/Lab2.c:10:6:System_Lab2_init	8	static
+../Core/Src/Lab2.c:39:6:coppy_data_characterHEX_to_buffer	24	static
+../Core/Src/Lab2.c:45:6:updateLEDMatrix	24	static
+../Core/Src/Lab2.c:63:6:animation_shift_left	16	static
+../Core/Src/Lab2.c:86:6:Exercise_10	8	static

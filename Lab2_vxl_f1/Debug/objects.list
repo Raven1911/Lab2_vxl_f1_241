@@ -1,5 +1,6 @@
 "./Core/Src/Lab2.o"
 "./Core/Src/Led7Seg_Display.o"
+"./Core/Src/config_GPIO_Led_Matrix.o"
 "./Core/Src/main.o"
 "./Core/Src/software_timer.o"
 "./Core/Src/stm32f1xx_hal_msp.o"

@@ -13,7 +13,7 @@
 
 //include led 7 segment
 #include "Led7Seg_Display.h"
-
+#include "config_GPIO_Led_Matrix.h"
 #include "stdbool.h"
 #include "stdio.h"
 #include "string.h"
