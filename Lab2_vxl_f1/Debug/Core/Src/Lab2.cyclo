@@ -3,5 +3,5 @@
 ../Core/Src/Lab2.c:49:6:Write_data_Row	1
 ../Core/Src/Lab2.c:60:6:coppy_data_characterHEX_to_buffer	2
 ../Core/Src/Lab2.c:66:6:updateLEDMatrix	3
-../Core/Src/Lab2.c:83:6:animation_shift_down	1
-../Core/Src/Lab2.c:87:6:Exercise_10	3
+../Core/Src/Lab2.c:86:6:animation_shift_left	7
+../Core/Src/Lab2.c:109:6:Exercise_10	4

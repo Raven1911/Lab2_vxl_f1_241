@@ -10,8 +10,9 @@
 #include "software_timer.h"
 void System_Lab2_init(){
 	timer_init();
+	setTimer(1, 800);
 	//Led_Matrix_Timer_Scan
-	setTimer(2, 150);
+	setTimer(2, 100);
 
 }
 
@@ -20,7 +21,7 @@ const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 
 //data
-unsigned matrix_buffer_col[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+unsigned matrix_buffer_col[8] = {0xFF, 0x00, 0x00, 0xFC, 0xFC, 0xFC, 0xFC, 0xFF}; //{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 unsigned data_pin_row[8] = {0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0};
 //scan led
 unsigned Col_Code_One_Hot[8] = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
@@ -30,8 +31,7 @@ unsigned En_Col[8] = {0b1, 0b1, 0b1, 0b1, 0b1, 0b1, 0b1, 0b1};
 unsigned characterHEX[][8] = {	// sum = 38 characterHEX
 {0xFF, 0x00, 0x00, 0xFC, 0xFC, 0xFC, 0xFC, 0xFF},//L 0
 {0xFF, 0xC0, 0x80, 0x33, 0x33, 0x80, 0xC0, 0xFF},//A 1
-{0x00, 0x00, 0xAF, 0xCF, 0xCF, 0xAF, 0x00, 0x00},//M 2
-{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},// khoảng trắng 3
+{0x00, 0x00, 0xAF, 0xCF, 0xCF, 0xAF, 0x00, 0x00},//M 2{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},// khoảng trắng 3
 {0xCF, 0x87, 0x83, 0xC1, 0xC1, 0x83, 0x87, 0xCF}// hình trái tim, kí hiệu là '&' 4
 };
 
@@ -80,12 +80,37 @@ void updateLEDMatrix (int index) {
 	Write_data_Row();
 }
 
-void animation_shift_down(){
+uint8_t data_character = 0;
+uint8_t counter = 7;
+uint8_t counter_shift = 0;
+void animation_shift_left(){
+	for(int i = 0; i < MAX_LED_MATRIX; i++){
+		if(i <= 6){
+			matrix_buffer_col[i] = matrix_buffer_col[i+1];
+
+		}
+		if(i > 6){
+			matrix_buffer_col[i] = characterHEX[data_character][7 - counter];
+		}
+	}
+	if(counter <= 0) counter = 7;
+	if(counter_shift >= 7) {
+		data_character++;
+		counter_shift = 0;
+		if(data_character > 3) data_character = 0;
+	}
+	counter--;
+	counter_shift++;
 
 }
 
+//uint8_t counter_shift_down = 0;
+uint8_t counter_character = 0;
 void Exercise_10(){
-	coppy_data_characterHEX_to_buffer(0);
+	if(flag_timer[1]){
+		animation_shift_left();
+		flag_timer[1] = 0;
+	}
 	if(flag_timer[2]){
 		updateLEDMatrix(index_led_matrix++);
 		if(index_led_matrix > MAX_LED_MATRIX - 1) index_led_matrix = 0;
