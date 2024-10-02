@@ -89,8 +89,8 @@ void System_Lab2_init(){
  8000212:	af00      	add	r7, sp, #0
 	timer_init();
  8000214:	f000 fa6c 	bl	80006f0 <timer_init>
-	setTimer(1, 800);
- 8000218:	f44f 7148 	mov.w	r1, #800	@ 0x320
+	setTimer(1, 750);
+ 8000218:	f240 21ee 	movw	r1, #750	@ 0x2ee
  800021c:	2001      	movs	r0, #1
  800021e:	f000 fa71 	bl	8000704 <setTimer>
 	//Led_Matrix_Timer_Scan
@@ -352,7 +352,7 @@ void animation_shift_left(){
  80003fe:	2300      	movs	r3, #0
  8000400:	607b      	str	r3, [r7, #4]
  8000402:	e021      	b.n	8000448 <animation_shift_left+0x50>
-		if(i <= 6){
+		if(i <  7){
  8000404:	687b      	ldr	r3, [r7, #4]
  8000406:	2b06      	cmp	r3, #6
  8000408:	dc08      	bgt.n	800041c <animation_shift_left+0x24>
@@ -366,7 +366,7 @@ void animation_shift_left(){
  8000418:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
 
 		}
-		if(i > 6){
+		if(i >= 7){
  800041c:	687b      	ldr	r3, [r7, #4]
  800041e:	2b06      	cmp	r3, #6
  8000420:	dd0f      	ble.n	8000442 <animation_shift_left+0x4a>

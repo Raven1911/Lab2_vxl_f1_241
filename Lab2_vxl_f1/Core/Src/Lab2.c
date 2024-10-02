@@ -10,7 +10,7 @@
 #include "software_timer.h"
 void System_Lab2_init(){
 	timer_init();
-	setTimer(1, 800);
+	setTimer(1, 750);
 	//Led_Matrix_Timer_Scan
 	setTimer(2, 100);
 
@@ -21,7 +21,7 @@ const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 
 //data
-unsigned matrix_buffer_col[8] = {0xFF, 0x00, 0x00, 0xFC, 0xFC, 0xFC, 0xFC, 0xFF}; //{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+unsigned matrix_buffer_col[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 unsigned data_pin_row[8] = {0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0};
 //scan led
 unsigned Col_Code_One_Hot[8] = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
@@ -85,11 +85,11 @@ uint8_t counter = 7;
 uint8_t counter_shift = 0;
 void animation_shift_left(){
 	for(int i = 0; i < MAX_LED_MATRIX; i++){
-		if(i <= 6){
+		if(i <  7){
 			matrix_buffer_col[i] = matrix_buffer_col[i+1];
 
 		}
-		if(i > 6){
+		if(i >= 7){
 			matrix_buffer_col[i] = characterHEX[data_character][7 - counter];
 		}
 	}
