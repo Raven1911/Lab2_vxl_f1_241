@@ -1,5 +1,4 @@
 ../Core/Src/Lab2.c:10:6:System_Lab2_init	1
-../Core/Src/Lab2.c:39:6:coppy_data_characterHEX_to_buffer	2
-../Core/Src/Lab2.c:45:6:updateLEDMatrix	3
-../Core/Src/Lab2.c:62:6:animation_shift_left	6
-../Core/Src/Lab2.c:87:6:Exercise_10	4
+../Core/Src/Lab2.c:34:6:updateLEDMatrix	3
+../Core/Src/Lab2.c:51:6:animation_shift_left	6
+../Core/Src/Lab2.c:76:6:Exercise_10	4

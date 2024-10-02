@@ -25,22 +25,11 @@ unsigned Col_Code_One_Hot[8] = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
 
 
 //////////////////////////////////////////////////////////////////
-unsigned characterHEX[][8] = {	// sum = 38 characterHEX
+unsigned characterHEX[][8] = {	// sum = 3 characterHEX
 {0xFF, 0x00, 0x00, 0xFC, 0xFC, 0xFC, 0xFC, 0xFF},//L 0
 {0xFF, 0xC0, 0x80, 0x33, 0x33, 0x80, 0xC0, 0xFF},//A 1
-{0x00, 0x00, 0xAF, 0xCF, 0xCF, 0xAF, 0x00, 0x00},//M 2
-{0xCF, 0x87, 0x83, 0xC1, 0xC1, 0x83, 0x87, 0xCF}// hình trái tim, kí hiệu là '&' 3
+{0xFF, 0x00, 0xA0, 0xCF, 0xCF, 0xA0, 0x00, 0xFF},//M 2
 };
-
-
-
-
-
-void coppy_data_characterHEX_to_buffer(int character){
-	for(int i = 0; i < MAX_LED_MATRIX; i++){
-		matrix_buffer_col[i] = characterHEX[character][i];
-	}
-}
 
 void updateLEDMatrix (int index) {
 	//buffer
@@ -71,17 +60,11 @@ void animation_shift_left(){
 		if(counter <= 0) {
 			data_character++;
 			counter = MAX_LED_MATRIX - 1;
-			if(data_character > 3) data_character = 0;
+			if(data_character > 2) data_character = 0;
 
 		}
 	}
-
-
-
-
-
 }
-
 
 uint8_t counter_character = 0;
 void Exercise_10(){
