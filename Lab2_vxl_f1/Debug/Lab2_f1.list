@@ -99,8 +99,8 @@ void System_Lab2_init(){
  8000220:	2000      	movs	r0, #0
  8000222:	f000 fc0f 	bl	8000a44 <setTimer>
 	//DOT 	//DIGITAL CLOCK
-	setTimer(1, 500);
- 8000226:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
+	setTimer(1, 1000);
+ 8000226:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
  800022a:	2001      	movs	r0, #1
  800022c:	f000 fc0a 	bl	8000a44 <setTimer>
 

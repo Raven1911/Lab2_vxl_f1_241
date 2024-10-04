@@ -31,7 +31,7 @@ void System_Lab2_init(){
 	//Data buffer	//Scan_led
 	setTimer(0, 250);
 	//DOT 	//DIGITAL CLOCK
-	setTimer(1, 500);
+	setTimer(1, 1000);
 
 
 }
