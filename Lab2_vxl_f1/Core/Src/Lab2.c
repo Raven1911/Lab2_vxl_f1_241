@@ -9,9 +9,9 @@
 #include <Lab2.h>
 void System_Lab2_init(){
 	timer_init();
-	setTimer(1, 800);
+	setTimer(1, 200);
 	//Led_Matrix_Timer_Scan
-	setTimer(2, 100);
+	setTimer(2, 13);
 
 }
 
